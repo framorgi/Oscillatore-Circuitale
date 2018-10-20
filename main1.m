@@ -17,7 +17,7 @@ b=14;
 %Lascio le opzioni di default per l'integratore e itero al variare della
 %condizione iniziale
 for k=1:size(I0,1)
-    [t,x(:,:,k)]=ode45('lvol',linspace(0,10,5000),I0(k,:));
+    [t,x(:,:,k)]=ode45('system',linspace(0,10,5000),I0(k,:));
 end
 
 %Ora disegno tutte le traiettorie sul piano di stato, per avere un'idea del
