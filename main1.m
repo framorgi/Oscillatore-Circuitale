@@ -1,5 +1,8 @@
 
 
+clear all;
+close all;
+clc;
 
 %Studio numerico del modello di Lotka-Volterra che descrive la competizione
 %tra due specie (p.es., x conigli, y pecore) per una risorsa condivisa
@@ -39,4 +42,22 @@ ax.YGrid = 'on';
 
 end
 
+%SOLUZIONE NEL TEMPO per ogni coordinata di stato
+figure();
+ for k=1:size(I0,1)
+    
+          subplot(size(I0,1),3,k);
+          plot(t,x(:,1,k),'r',t,x(:,2,k),'g',t,x(:,3,k),'b' ); 
+          str = ['CI [x1=',num2str(x(1,1,k)),' x2=',num2str(x(1,2,k)),' x=',num2str(x(1,3,k)),']'];
+          title(str);
+xlabel('time');
+ylabel('x1,x2,x3');
+
+          ax = gca;
+ax.ZGrid = 'on';
+ax.XGrid = 'on';
+ 
+
+                
+ end
  
