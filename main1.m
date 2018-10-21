@@ -1,7 +1,6 @@
 
-clear all;
-close all;
-clc;
+
+
 %Studio numerico del modello di Lotka-Volterra che descrive la competizione
 %tra due specie (p.es., x conigli, y pecore) per una risorsa condivisa
 %(p.es. erba).
@@ -12,18 +11,18 @@ load I0;
 %Inizializzo un tensore in cui memorizzero' le traiettorie (5000 punti
 %ciascuna) a partire dalle diverse condizioni iniziali contenute nella
 %matrice I0. Ciascuna traiettoria ha 3 componenti (x e y e z)
-x=zeros([5000 3 size(I0,1)]);
+x=zeros([500000 3 size(I0,1)]);
 a=7;
 b=14;
 %Lascio le opzioni di default per l'integratore e itero al variare della
 %condizione iniziale
 for k=1:size(I0,1)
-    [t,x(:,:,k)]=ode45('osc',linspace(0,10,5000),I0(k,:));
+    [t,x(:,:,k)]=ode45('osc',linspace(0,100,500000),I0(k,:));
 end
 
 %Ora disegno tutte le traiettorie sul piano di stato, per avere un'idea del
 %quadro di stato
-figure();
+
 for k=1:size(I0,1)
     
    plot3(x(:,1,k),x(:,2,k),x(:,3,k),'-',... 
@@ -40,21 +39,4 @@ ax.YGrid = 'on';
 
 end
 
-%SOLUZIONE NEL TEMPO per ogni coordinata di stato
-figure();
- for k=1:size(I0,1)
-    
-          subplot(size(I0,1),3,k);
-          plot(t,x(:,1,k),'r',t,x(:,2,k),'g',t,x(:,3,k),'b' ); 
-          str = ['CI [x1=',num2str(x(1,1,k)),' x2=',num2str(x(1,2,k)),' x=',num2str(x(1,3,k)),']'];
-          title(str);
-xlabel('time');
-ylabel('x1,x2,x3');
-
-          ax = gca;
-ax.ZGrid = 'on';
-ax.XGrid = 'on';
  
-
-                
- end
