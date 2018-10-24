@@ -22,7 +22,7 @@ A(:,3)=eig(J(:,:,3));
 
 for k=1:3
 figure;
-plot (A(:,k),'xb');
+plot (A(:,k),'ob','MarkerSize', 10);
 ax = gca;
 ax.XAxisLocation= 'origin';
 ax.YAxisLocation= 'origin';
@@ -30,6 +30,8 @@ ax.XAxis.Color = 'r';
 ax.YAxis.Color = 'r';
 ax.XGrid = 'on';
 ax.YGrid = 'on';
+ax.XAxis.LineWidth=2;
+ax.YAxis.LineWidth=2;
 
 hold on;
 end

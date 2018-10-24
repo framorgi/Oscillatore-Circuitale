@@ -44,9 +44,18 @@ for k=1:size(I0,1)
    ax.ZGrid = 'on';
    ax.XGrid = 'on';
    ax.YGrid = 'on';
+   box on;
    hold on;
 
 end
+minx1=min(x(1,:,:));
+minx2=min(x(2,:,:));
+maxx2=max(x(2,:,:));
+maxx1=max(x(1,:,:));
+[X,Y] = meshgrid(-2:0.5:2,-2:2);
+Z = -X + Y;
+surf(X,Y,Z);
+
 
 %SOLUZIONE NEL TEMPO per ogni coordinata di stato
 figure('Name','EVOLUZIONE NEL TEMPO PER OGNI COMPONENTE DI STATO');
