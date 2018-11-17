@@ -51,7 +51,7 @@ figure('Name','EVOLUZIONE NEL TEMPO PER OGNI COMPONENTE DI STATO');
  end
 %Ora disegno tutte le traiettorie sul piano di stato, per avere un'idea del
 %quadro di stato
-figure('Name','TRAIETTORIE NELLO SPAZIO DI STATO');
+figure('Name','TRAIETTORIE NELLO SPAZIO DI STATO 1');
 for k=1:size(I0,1)
  % h1=  surface(X,Y,Z,'FaceColor','c','EdgeColor','none','FaceAlpha',0.5);
    plot3(x(:,1,k),x(:,2,k),x(:,3,k),'-',... 
@@ -60,7 +60,7 @@ for k=1:size(I0,1)
    'LineWidth',1);
 
  %titoli e labels
-   str = ('TRAIETTORIE NELLO SPAZIO DI STATO');
+   str = ('TRAIETTORIE NELLO SPAZIO DI STATO con piani di poincare con dX=0');
    title(str);
    xlabel('x1');
    ylabel('x2');
@@ -72,14 +72,19 @@ for k=1:size(I0,1)
    ax.YGrid = 'on';
    box on;
    hold on;
-%disegno poincare
+   
+   
+   
+%DISEGNO POINCARRÉ per prima equazione
 
  
    [ t,cycle] = ComputeCycle(@osc,@HRxmax,@HRjac,1e-2,[1,1000],I0(2,:));
 [xp,zp] = meshgrid(linspace(min(cycle(:,1))*1.1,max(cycle(:,1))*1.1,100),...
                  linspace(min(cycle(:,3))*1.1,max(cycle(:,3))*1.1,100)); 
- %yp = (1/16) * xp.^3 - xp/16;
- yp = zp+xp;
+
+yp = (1/16) * xp.^3 - xp/16;
+ %yp= xp.^3/16-xp/6;
+ %yp = zp+xp;
  %yp=0;
  
 surf(xp,yp,zp,'FaceColor','g','EdgeColor','none');
@@ -87,14 +92,112 @@ plot3(cycle(:,1),cycle(:,2),cycle(:,3),'k','LineWidth',3);
 [ t,cycle] = ComputeCycle(@HR,@HRxmax,@HRjac,1e-2,[1,1000],I0(3,:));
 [xp,zp] = meshgrid(linspace(min(cycle(:,1))*1.1,max(cycle(:,1))*1.1,100),...
                  linspace(min(cycle(:,3))*1.1,max(cycle(:,3))*1.1,100)); 
+ 
  %yp = (1/16) * xp.^3 - xp/16;
  %yp = zp+xp;
  %yp=0;
-% surf(xp,yp,zp,'FaceColor','b','EdgeColor','none');
-%plot3(cycle(:,1),cycle(:,2),cycle(:,3),'k','LineWidth',3); 
+ 
+ surf(xp,yp,zp,'FaceColor','b','EdgeColor','none');
+plot3(cycle(:,1),cycle(:,2),cycle(:,3),'k','LineWidth',3); 
 
- end
-% minx1=min(x(1,:,:));
+end
+ figure('Name','TRAIETTORIE NELLO SPAZIO DI STATO 2');
+for k=1:size(I0,1)
+ % h1=  surface(X,Y,Z,'FaceColor','c','EdgeColor','none','FaceAlpha',0.5);
+   plot3(x(:,1,k),x(:,2,k),x(:,3,k),'-',... 
+   x(1,1,k),x(1,2,k),x(1,3,k),'og',...
+   x(end,1,k),x(end,2,k),x(end,3,k),'ob',...
+   'LineWidth',1);
+
+ %titoli e labels
+   str = ('TRAIETTORIE NELLO SPAZIO DI STATO con piani di poincare con dY=0');
+   title(str);
+   xlabel('x1');
+   ylabel('x2');
+   zlabel('x3');
+  %axis setting        
+   ax = gca;
+   ax.ZGrid = 'on';
+   ax.XGrid = 'on';
+   ax.YGrid = 'on';
+   box on;
+   hold on;
+   
+   
+   
+%DISEGNO POINCARRÉ per seconda equazione
+
+ 
+   [ t,cycle] = ComputeCycle(@osc,@HRxmaxy,@HRjac,1e-2,[1,1000],I0(2,:));
+[xp,zp] = meshgrid(linspace(min(cycle(:,1))*1.1,max(cycle(:,1))*1.1,100),...
+                 linspace(min(cycle(:,3))*1.1,max(cycle(:,3))*1.1,100)); 
+
+%yp = (1/16) * xp.^3 - xp/16;
+ yp= xp.^3/16-xp/6;
+ %yp = zp+xp;
+ %yp=0;
+ 
+surf(xp,yp,zp,'FaceColor','g','EdgeColor','none');
+plot3(cycle(:,1),cycle(:,2),cycle(:,3),'k','LineWidth',3);  
+[ t,cycle] = ComputeCycle(@HR,@HRxmaxy,@HRjac,1e-2,[1,1000],I0(3,:));
+[xp,zp] = meshgrid(linspace(min(cycle(:,1))*1.1,max(cycle(:,1))*1.1,100),...
+                 linspace(min(cycle(:,3))*1.1,max(cycle(:,3))*1.1,100)); 
+ 
+ 
+ 
+ surf(xp,yp,zp,'FaceColor','b','EdgeColor','none');
+plot3(cycle(:,1),cycle(:,2),cycle(:,3),'k','LineWidth',3); 
+
+end
+
+figure('Name','TRAIETTORIE NELLO SPAZIO DI STATO 3');
+for k=1:size(I0,1)
+ % h1=  surface(X,Y,Z,'FaceColor','c','EdgeColor','none','FaceAlpha',0.5);
+   plot3(x(:,1,k),x(:,2,k),x(:,3,k),'-',... 
+   x(1,1,k),x(1,2,k),x(1,3,k),'og',...
+   x(end,1,k),x(end,2,k),x(end,3,k),'ob',...
+   'LineWidth',1);
+
+ %titoli e labels
+   str = ('TRAIETTORIE NELLO SPAZIO DI STATO con piani di poincare con dZ=0');
+   title(str);
+   xlabel('x1');
+   ylabel('x2');
+   zlabel('x3');
+  %axis setting        
+   ax = gca;
+   ax.ZGrid = 'on';
+   ax.XGrid = 'on';
+   ax.YGrid = 'on';
+   box on;
+   hold on;
+   
+   
+   
+%DISEGNO POINCARRÉ per terza equazione
+
+ 
+   [ t,cycle] = ComputeCycle(@osc,@HRxmaxz,@HRjac,1e-2,[1,1000],I0(2,:));
+[xp,zp] = meshgrid(linspace(min(cycle(:,1))*1.1,max(cycle(:,1))*1.1,100),...
+                 linspace(min(cycle(:,3))*1.1,max(cycle(:,3))*1.1,100)); 
+
+%yp = (1/16) * xp.^3 - xp/16;
+ %yp= xp.^3/16-xp/6;
+ yp = zp+xp;
+ %yp=0;
+ 
+surf(xp,yp,zp,'FaceColor','g','EdgeColor','none');
+plot3(cycle(:,1),cycle(:,2),cycle(:,3),'k','LineWidth',3);  
+[ t,cycle] = ComputeCycle(@HR,@HRxmaxz,@HRjac,1e-2,[1,1000],I0(3,:));
+[xp,zp] = meshgrid(linspace(min(cycle(:,1))*1.1,max(cycle(:,1))*1.1,100),...
+                 linspace(min(cycle(:,3))*1.1,max(cycle(:,3))*1.1,100)); 
+ 
+ 
+ 
+ surf(xp,yp,zp,'FaceColor','b','EdgeColor','none');
+plot3(cycle(:,1),cycle(:,2),cycle(:,3),'k','LineWidth',3); 
+
+end% minx1=min(x(1,:,:));
 % minx2=min(x(2,:,:));
 % maxx2=max(x(2,:,:));
 % maxx1=max(x(1,:,:));
