@@ -1,4 +1,4 @@
-function [T,Y] = ComputeCycle(func, poincare, jacobian, tol, tspan, y0, varargin)
+function [T,Y,TE,YE] = ComputeCycle(func, poincare, jacobian, tol, tspan, y0, varargin)
 % [T,Y] = ComputeCycle(func, poincare, jacobian, tol, tspan, y0, varargin)
 %ComputeCycle(@HR,@HRxmax,@HRjac,1e-2,[1,1000],[0,0,0],b,I,u,s); comanda
 %che la chiama
@@ -38,7 +38,8 @@ ta = te(end-k);
 ind = find(t >= ta & t <= tb);
 T = [t(ind) ; t(ind(end)+1)];
 Y = [y(ind,:) ; y(ind(1),:)];
-
+TE = te;
+YE = ye;
 if DBG  %disegna altri grafici non viene utilizzato perché DBG =0
     figure;
     hold on;
