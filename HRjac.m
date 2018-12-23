@@ -1,5 +1,7 @@
-function J = HRjac(t, x)
-%
+function J = HRjac(t, a,b)
+a=-9;
+b=14;
+
 %   J = HRjac(t, x, b, I, u, s)
 %
 %   Calcolo della matrice Jacobiana del sistema di Hindmarsh-Rose.
@@ -20,7 +22,7 @@ if numel(x) ~= 3 || numel(b) ~= 1 || numel(I) ~= 1 || numel(u) ~= 1 || numel(s) 
 end
 
 
-J = [ (-3/16)*7*x(1)^2+(7/6) ,  7 , 0 ;
+J = [ (-3/16)*a*x(1)^2+(a/6) ,  a , 0 ;
      1              , -1 ,  1 ; 
-         0              ,  -14 , 0 ];
+         0              ,  -b , 0 ];
 

@@ -1,4 +1,5 @@
-function J = jac(x,a,b)
+function J = jac(x)
+global a b;
 % J = vdpjac(x,p)
 % 
 % Matrice Jacobiana del modello di van der Pol.
@@ -8,7 +9,7 @@ function J = jac(x,a,b)
 %  a,b - parametri.
 % 
 
-% alloco un tensore  3x3x3 (voglio 3 jacobiane perchè linearizzo attorno 3 punti
+% alloco un tensore  3x3x3 (voglio 3 jacobiane perchè linearizzo su 3 punti
 % di equilibrio
 J = zeros(3,3,3);
 for k=1:size(x,1)
@@ -22,3 +23,4 @@ J(3,1,k) = 0;
 J(3,2,k) = -b;
 J(3,3,k) = 0;
 end
+
