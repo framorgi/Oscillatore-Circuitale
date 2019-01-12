@@ -23,9 +23,9 @@ load I0;
 %matrice I0. Ciascuna traiettoria ha 3 componenti (x3 e y e z)
 x=zeros([5000 3 size(I0,1)]);
 %cambio i parametri del sistema automaticamente
-for a = 6: 0.1 : 7
-%a=9.3;
-b=14;
+for b = -1: 0.1 : 0
+a=7;
+%b=14;
 %Lascio le opzioni di default per l'integratore e itero al variare della
 %condizione iniziale
 for k=1:size(I0,1)

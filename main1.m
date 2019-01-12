@@ -5,7 +5,7 @@ close all;
 clc;
 global a b
 a=7;
-b=14;
+b=-14;
 
 %Studio numerico del modello di Lotka-Volterra che descrive la competizione
 %tra due specie (p.es., x conigli, y pecore) per una risorsa condivisa
@@ -60,10 +60,10 @@ figure('Name','EVOLUZIONE NEL TEMPO PER OGNI COMPONENTE DI STATO');
 figure('Name','TRAIETTORIE NELLO SPAZIO DI STATO 3');
 for k=1:size(I0,1)
  
-%    plot3(x(:,1,k),x(:,2,k),x(:,3,k),'-',... 
-%    x(1,1,k),x(1,2,k),x(1,3,k),'og',...
-%    x(end,1,k),x(end,2,k),x(end,3,k),'ob',...
-%    'LineWidth',1);
+    plot3(x(:,1,k),x(:,2,k),x(:,3,k),'-',... 
+    x(1,1,k),x(1,2,k),x(1,3,k),'og',...
+    x(end,1,k),x(end,2,k),x(end,3,k),'ob',...
+    'LineWidth',1);
 
  %titoli e labels
    str = ('TRAIETTORIE NELLO SPAZIO DI STATO con piani di poincare con dZ=0');

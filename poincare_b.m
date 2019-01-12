@@ -9,23 +9,24 @@ global a b;
 %Integro numericamente il sistema a partire dalle condizioni
 %iniziali contenute nella matrice I0, che deve essere nel workspace.
 load I0;
- I0(1,1)= 0;
- I0(1,2)= 0.1;
- I0(1,3)= 0;
+%  I0(1,1)= 0;
+%  I0(1,2)= 0;
+%  I0(1,3)= 0;
 % I0(2,1)= sqrt(16/6);
 % I0(2,2)= 0;
-  I0(3,1)= -sqrt(16/6);
+  I0(3,1)= sqrt(16/6);
   I0(3,2)= 0;
-  I0(3,3)= sqrt(16/6);
+  I0(3,3)= -sqrt(16/6);
 
 %Inizializzo un tensore in cui memorizzero' le traiettorie (5000 punti
 %ciascuna) a partire dalle diverse condizioni iniziali contenute nella
 %matrice I0. Ciascuna traiettoria ha 3 componenti (x e y e z)
 x=zeros([5000 3 size(I0,1)]);
 %cambio i parametri del sistema automaticamente
-for b = 14.9: 0.1 : 16  %passo 1
+%for b = -1 : 1 : 3 %passo 1
+
 a=7;
-%b=14;
+b=-1.8;
 %Lascio le opzioni di default per l'integratore e itero al variare della
 %condizione iniziale
 for k=1:size(I0,1)
@@ -100,7 +101,7 @@ plot3(cycle(:,1),cycle(:,2),cycle(:,3),'k','LineWidth',3);
 % val1= [ I0(2,:)];
 % disp (val1);
 end
-end
+%end
 %prova_massimi;
 %Grafico i picchi 
 % figure;
